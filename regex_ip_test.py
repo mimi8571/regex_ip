@@ -8,41 +8,16 @@ def ipv6_all_cases():
     ip_6 = []
 
     for i in range(0, 8):
-        num = "".join(random.choice(string.hexdigits) for x in range(4))
         if i == 0:
-            for e in range(1, 8):
-                ip_6.append("::" + ":".join(("%x" %  random.randint(0, 16**4) 
-                           for f in range(e))))
-        if i == 1:
-            for e in range(0, 7):
-                ip_6.append(num + "::" + ":".join(("%x" % random.randint(0, 16**4)
-                           for f in range(e))))
-        if i == 2:
-            for e in range(1, 6):
-                ip_6.append(num + ":" + num + "::" + ":".join(("%x" %  
-                           random.randint(0, 16**4) for f in range(e))))
-        if i == 3:
-            for e in range(1, 5):
-                ip_6.append(num + ":" + num + ":" + num + "::" + ":".join(("%x" % 
-                           random.randint(0, 16**4) for f in range(e))))
-        if i == 4:
-            for e in range(1, 4):
-                ip_6.append(num + ":" + num + ":" + num + ":" + num + "::" + 
-                           ":".join(("%x" %  random.randint(0, 16**4) for f in 
-                           range(e))))
-        if i == 5:
-            for e in range(1, 3):
-                ip_6.append(num + ":" + num + ":" + num + ":" + num + ":" + num + 
-                           "::" + ":".join(("%x" %  random.randint(0, 16**4) for f
-                           in range(e))))
-        if i == 6:
-            ip_6.append(":".join(("%x" % random.randint(0, 16**4) for f in range(i))) 
-                        + "::" + num)
-        if i == 7:
             ip_6.append(str(ipaddress.IPv6Address(random.randint(0,2**128-1))))
             for e in range(1, 8):
-                ip_6.append(":".join(("%x" %  random.randint(0, 16**4) for f in 
-                           range(e))) + "::")
+                ip_6.append("::" + ":".join(("%x" %  random.randint(0, 16**4) 
+                            for s in range(e))))
+        else:
+            for n in range(0, 8 - i):
+                ip_6.append(":".join(("%x" % random.randint(0, 16**4) for f
+                            in range(i))) + "::" + ":".join(("%x" % 
+                            random.randint(0, 16**4) for n in range(n))))
 
     return ip_6
 
@@ -63,11 +38,7 @@ def regex_parse(ip_address):
         result = regex.match(ip_address[i])
         print(ip_address[i])
         print(result)
-#        if result is False:
-#            print("Invalid!!")
-#        elif result is True:
-#            print("Valid! Matched!")
-#    return result
+        print()
 
 
 #main function
@@ -77,3 +48,5 @@ if __name__ == "__main__":
     regex_parse(ip_6)
     regex_parse(ip_4)
 
+#    for i in range(0, len(ip_6)):
+#        print(ip_6[i])
