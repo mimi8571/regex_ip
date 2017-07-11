@@ -3,7 +3,7 @@ import ipaddress
 import random
 import string
 
-#IPv6 w/ double colon in diff places
+#IPv6 w/ double colon in diff places; full ipv6 address
 def ipv6_all_cases():
     ip_6 = []
 
@@ -36,7 +36,11 @@ def regex_parse(ip_address):
 
     for i in range(0, len(ip_address)):
         result = regex.match(ip_address[i])
-        print("IP Addr: %s\nRegex:   %s\n\n" % (ip_address[i], result.string[result.start():result.end()]))
+        print(ip_address[i])
+        if result == "None":
+            print("Fail\n")
+        else:
+            print("Pass!\n")
 
 
 #main function
