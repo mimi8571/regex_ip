@@ -36,9 +36,7 @@ def regex_parse(ip_address):
 
     for i in range(0, len(ip_address)):
         result = regex.match(ip_address[i])
-        print(ip_address[i])
-        print(result)
-        print()
+        print("IP Addr: %s\nRegex:   %s\n\n" % (ip_address[i], result.string[result.start():result.end()]))
 
 
 #main function
